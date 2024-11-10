@@ -33,18 +33,20 @@ public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
                 break;
         }
 
-        return new CupomDescontoEntrega("Desconto por Tipo de Cliente", valorDesconto);
+        String nomeMetodoDesconto = "Desconto por Tipo de Cliente";
+        if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
+            valorDesconto = 10.0 - pedido.getDescontoConcedido();
+            nomeMetodoDesconto = "Desconto parcial por Tipo de Cliente";
+        }
+
+        return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
         validaPedido(pedido);
         boolean aplicavel = false;
-        double totalDescontos = 0;
-        for (CupomDescontoEntrega cupom : pedido.getCuponsDesconto()){
-            totalDescontos += cupom.getValorDesconto();
-        }
-        if(totalDescontos <= 10){
+        if(pedido.getDescontoConcedido() < 10){
             aplicavel = true;
         }
         return aplicavel;
@@ -58,6 +60,5 @@ public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
             throw new RuntimeException("Falha ao calcular desconto por Tipo de Cliente. Informe um cliente valido para o pedido!\n");
         }
         this.tipoCliente = pedido.getCliente().getTipo();
-
     }
 }

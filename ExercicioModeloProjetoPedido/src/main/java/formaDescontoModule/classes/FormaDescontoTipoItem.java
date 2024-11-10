@@ -5,6 +5,7 @@ import classes.Item;
 import classes.Pedido;
 import interfaces.IFormaDescontoTaxaEntrega;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
@@ -12,6 +13,7 @@ public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
 
     public FormaDescontoTipoItem(){
         // posso passar o validaPedido no construtor?
+        this.descontosPorItem = new HashMap<>();
     }
 
     @Override
@@ -37,7 +39,13 @@ public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
             }
         }
 
-        return new CupomDescontoEntrega("Desconto por Tipo de Item", valorDesconto);
+        String nomeMetodoDesconto = "Desconto por Tipo de Item";
+        if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
+            valorDesconto = 10.0 - pedido.getDescontoConcedido();
+            nomeMetodoDesconto = "Desconto parcial por Tipo de Item";
+        }
+
+        return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
     @Override
@@ -46,10 +54,7 @@ public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
         validaPedido(pedido);
         boolean aplicavel = false;
         double totalDescontos = 0;
-        for (CupomDescontoEntrega cupom : pedido.getCuponsDesconto()){
-            totalDescontos += cupom.getValorDesconto();
-        }
-        if(totalDescontos <= 10){
+        if(pedido.getDescontoConcedido() < 10){
             aplicavel = true;
         }
         return aplicavel;

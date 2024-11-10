@@ -24,18 +24,21 @@ public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega {
             default:
                 break;
         }
-        return new CupomDescontoEntrega("Desconto por Bairro", valorDesconto);
+
+        String nomeMetodoDesconto = "Desconto por Bairro";
+        if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
+            valorDesconto = 10.0 - pedido.getDescontoConcedido();
+            nomeMetodoDesconto = "Desconto parcial por Bairro";
+        }
+
+        return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
         validaPedido(pedido);
         boolean aplicavel = false;
-        double totalDescontos = 0;
-        for (CupomDescontoEntrega cupom : pedido.getCuponsDesconto()){
-            totalDescontos += cupom.getValorDesconto();
-        }
-        if(totalDescontos <= 10){
+        if(pedido.getDescontoConcedido() < 10){
             aplicavel = true;
         }
         return aplicavel;

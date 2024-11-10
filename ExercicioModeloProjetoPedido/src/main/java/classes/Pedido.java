@@ -1,5 +1,6 @@
 package classes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -9,13 +10,13 @@ public class Pedido {
     private double taxaEntrega = 10;
     // no diagrama não existe explicitamente as variáveis abaixo. pq?
     private Cliente cliente;
-    private Date data;
+    private LocalDate data;
     private List<Item> itens;
     private List<CupomDescontoEntrega> cuponsDesconto;
 //    private List<>
 
 
-    public Pedido(Date data, Cliente cliente) {
+    public Pedido(LocalDate data, Cliente cliente) {
         this.cliente = cliente;
         this.data = data;
         this.itens = new ArrayList<>(); // tem diferença entre criar o array aqui e na declaração da variável
@@ -31,8 +32,6 @@ public class Pedido {
         for (Item item : itens){
             valorPedido += item.getValorUnitario() * item.getQuantidade();
         }
-
-        valorPedido -= getDescontoConcedido();
         return valorPedido;
     }
 
@@ -50,6 +49,7 @@ public class Pedido {
 
     public void aplicarDesconto(CupomDescontoEntrega cupomDesconto){
         this.cuponsDesconto.add(cupomDesconto);
+        this.taxaEntrega -= cupomDesconto.getValorDesconto();
     }
 
     public double getDescontoConcedido(){
@@ -64,8 +64,16 @@ public class Pedido {
         return this.cuponsDesconto;
     }
 
+    public String descreverCuponsUtilizados(){
+        String descricaoCupons = "";
+        for (CupomDescontoEntrega cupom : getCuponsDesconto()){
+            descricaoCupons += "- " + cupom.getNomeMetodo() + " RS" + cupom.getValorDesconto() + "\n";
+        }
+        return descricaoCupons;
+    }
+
     @Override public String toString(){
-        return "Informacoes do pedido\nValor do pedido: " + getValorPedido() + "\nValor desconto: " + getDescontoConcedido() + "\n";
+        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nValor do pedido: " + getValorPedido() + "\nValor desconto: " + getDescontoConcedido() + "\n";
     }
 
 }
