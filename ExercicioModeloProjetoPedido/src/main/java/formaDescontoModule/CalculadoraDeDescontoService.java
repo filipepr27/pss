@@ -23,9 +23,7 @@ public class CalculadoraDeDescontoService {
 
     public void calcularDesconto(Pedido pedido){
         for (IFormaDescontoTaxaEntrega metodoDesconto : metodosDeDesconto){
-            if (metodoDesconto.seAplica(pedido)){
-                pedido.aplicarDesconto(metodoDesconto.calcularDesconto(pedido));
-            }
+            pedido.aplicarDesconto(metodoDesconto.calcularDesconto(pedido));
         }
     }
 }

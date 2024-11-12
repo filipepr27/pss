@@ -15,17 +15,21 @@ public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
 
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
+        validaPedido(pedido);
         double valorDesconto = 0;
-        if(pedido.getValorPedido() > limiteValorPedido){
-            valorDesconto = VALOR_DESCONTO;
-        }
+        String nomeMetodoDesconto = "Desconto por Valor do Pedido nao aplicavel";
 
-        String nomeMetodoDesconto = "Desconto por Valor do Pedido";
-        if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
-            valorDesconto = 10.0 - pedido.getDescontoConcedido();
-            nomeMetodoDesconto = "Desconto parcial por Valor do Pedido";
-        }
+        if(seAplica(pedido)){
+            if(pedido.getValorPedido() > limiteValorPedido){
+                valorDesconto = VALOR_DESCONTO;
+            }
 
+            nomeMetodoDesconto = "Desconto por Valor do Pedido";
+            if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
+                valorDesconto = 10.0 - pedido.getDescontoConcedido();
+                nomeMetodoDesconto = "Desconto parcial por Valor do Pedido";
+            }
+        }
         return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 

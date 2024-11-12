@@ -20,31 +20,34 @@ public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
     public CupomDescontoEntrega calcularDesconto(Pedido pedido){
         validaPedido(pedido);
         double valorDesconto = 0;
-        for(Item item : pedido.getItens()){
-            switch (item.getTipo()){
-                case "Alimentacao":
-                    this.descontosPorItem.put("Desconto por item do tipo Alimentacao", 5.0);
-                    valorDesconto += 5.0;
-                    break;
-                case "Educacao":
-                    this.descontosPorItem.put("Desconto por item do tipo Educacao", 2.0);
-                    valorDesconto += 2.0;
-                    break;
-                case "Lazer":
-                    this.descontosPorItem.put("Desconto por item do tipo Lazer", 1.5);
-                    valorDesconto += 1.5;
-                    break;
-                default:
-                    break;
+        String nomeMetodoDesconto = "Desconto por Tipo de Item nao aplicavel";
+        if(seAplica(pedido)){
+            for(Item item : pedido.getItens()){
+                switch (item.getTipo()){
+                    case "Alimentacao":
+                        this.descontosPorItem.put("Desconto por item do tipo Alimentacao", 5.0);
+                        valorDesconto += 5.0;
+                        break;
+                    case "Educacao":
+                        this.descontosPorItem.put("Desconto por item do tipo Educacao", 2.0);
+                        valorDesconto += 2.0;
+                        break;
+                    case "Lazer":
+                        this.descontosPorItem.put("Desconto por item do tipo Lazer", 1.5);
+                        valorDesconto += 1.5;
+                        break;
+                    default:
+                        break;
+                }
             }
-        }
 
-        String nomeMetodoDesconto = "Desconto por Tipo de Item";
-        if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
-            valorDesconto = 10.0 - pedido.getDescontoConcedido();
-            nomeMetodoDesconto = "Desconto parcial por Tipo de Item";
-        }
+            nomeMetodoDesconto = "Desconto por Tipo de Item";
+            if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
+                valorDesconto = 10.0 - pedido.getDescontoConcedido();
+                nomeMetodoDesconto = "Desconto parcial por Tipo de Item";
+            }
 
+        }
         return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 

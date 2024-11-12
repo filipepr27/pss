@@ -19,26 +19,29 @@ public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
     public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
         double valorDesconto = 0;
-        switch (this.tipoCliente){
-            case "Ouro":
-                valorDesconto = 3.0;
-                break;
-            case "Prata":
-                valorDesconto = 2.0;
-                break;
-            case "Bronze":
-                valorDesconto = 1.0;
-                break;
-            default:
-                break;
-        }
+        String nomeMetodoDesconto = "Desconto por Tipo de Cliente nao aplicavel";
+        if (seAplica(pedido)){
+            switch (this.tipoCliente){
+                case "Ouro":
+                    valorDesconto = 3.0;
+                    break;
+                case "Prata":
+                    valorDesconto = 2.0;
+                    break;
+                case "Bronze":
+                    valorDesconto = 1.0;
+                    break;
+                default:
+                    break;
+            }
 
-        String nomeMetodoDesconto = "Desconto por Tipo de Cliente";
-        if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
-            valorDesconto = 10.0 - pedido.getDescontoConcedido();
-            nomeMetodoDesconto = "Desconto parcial por Tipo de Cliente";
-        }
+            nomeMetodoDesconto = "Desconto por Tipo de Cliente";
+            if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
+                valorDesconto = 10.0 - pedido.getDescontoConcedido();
+                nomeMetodoDesconto = "Desconto parcial por Tipo de Cliente";
+            }
 
+        }
         return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
