@@ -48,8 +48,10 @@ public class Pedido {
     }
 
     public void aplicarDesconto(CupomDescontoEntrega cupomDesconto){
-        this.cuponsDesconto.add(cupomDesconto);
-        this.taxaEntrega -= cupomDesconto.getValorDesconto();
+        if (cupomDesconto.getValorDesconto() > 0){
+            this.cuponsDesconto.add(cupomDesconto);
+            this.taxaEntrega -= cupomDesconto.getValorDesconto();
+        }
     }
 
     public double getDescontoConcedido(){
