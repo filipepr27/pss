@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
 
-    private Map<String, Double> descontosPorTipoCLiente; // pq se um cliente só pertence a um tipo?
+    private Map<String, Double> descontosPorTipoCliente; // pq se um cliente só pertence a um tipo?
     private String tipoCliente;
 
     public FormaDescontoPorTipoCliente(){
@@ -16,11 +16,11 @@ public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
     }
 
     @Override
-    public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
+    public void calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
         double valorDesconto = 0;
-        String nomeMetodoDesconto = "Desconto por Tipo de Cliente nao aplicavel";
         if (seAplica(pedido)){
+        String nomeMetodoDesconto = "Desconto por Tipo de Cliente";
             switch (this.tipoCliente){
                 case "Ouro":
                     valorDesconto = 3.0;
@@ -35,21 +35,22 @@ public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
                     break;
             }
 
-            nomeMetodoDesconto = "Desconto por Tipo de Cliente";
             if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
                 valorDesconto = 10.0 - pedido.getDescontoConcedido();
                 nomeMetodoDesconto = "Desconto parcial por Tipo de Cliente";
             }
 
+            if(valorDesconto > 0){
+                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto + " " + this.tipoCliente, valorDesconto));
+            }
         }
-        return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
         validaPedido(pedido);
         boolean aplicavel = false;
-        if(pedido.getDescontoConcedido() < 10){
+        if(pedido.getCliente().getTipo() != null){
             aplicavel = true;
         }
         return aplicavel;

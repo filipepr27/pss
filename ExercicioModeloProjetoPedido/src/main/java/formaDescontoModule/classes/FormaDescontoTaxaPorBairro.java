@@ -8,11 +8,11 @@ public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega {
     private String bairroCliente;
 
     @Override
-    public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
+    public void calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
-        double valorDesconto = 0;
-        String nomeMetodoDesconto = "Desconto por Bairro nao aplicavel";
         if(seAplica(pedido)){
+            double valorDesconto = 0;
+            String nomeMetodoDesconto = "Desconto por Bairro";
             switch (this.bairroCliente){
                 case "Centro":
                     valorDesconto = 2.0;
@@ -27,20 +27,22 @@ public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega {
                     break;
             }
 
-            nomeMetodoDesconto = "Desconto por Bairro";
             if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
                 valorDesconto = 10.0 - pedido.getDescontoConcedido();
                 nomeMetodoDesconto = "Desconto parcial por Bairro";
             }
+
+            if (valorDesconto > 0) {
+                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto + " " + this.bairroCliente, valorDesconto));
+            }
         }
-        return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
         validaPedido(pedido);
         boolean aplicavel = false;
-        if(pedido.getDescontoConcedido() < 10){
+        if(pedido.getCliente().getBairro() != null){
             aplicavel = true;
         }
         return aplicavel;

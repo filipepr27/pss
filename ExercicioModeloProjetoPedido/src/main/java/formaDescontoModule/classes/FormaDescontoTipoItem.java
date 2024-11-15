@@ -17,38 +17,39 @@ public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
     }
 
     @Override
-    public CupomDescontoEntrega calcularDesconto(Pedido pedido){
+    public void calcularDesconto(Pedido pedido){
         validaPedido(pedido);
-        double valorDesconto = 0;
-        String nomeMetodoDesconto = "Desconto por Tipo de Item nao aplicavel";
         if(seAplica(pedido)){
+            double valorDesconto = 0;
+            String nomeMetodoDesconto = "Desconto por Tipo de Item";
             for(Item item : pedido.getItens()){
                 switch (item.getTipo()){
                     case "Alimentacao":
                         this.descontosPorItem.put("Desconto por item do tipo Alimentacao", 5.0);
-                        valorDesconto += 5.0;
+                        valorDesconto += 5.0 * item.getQuantidade();
                         break;
                     case "Educacao":
                         this.descontosPorItem.put("Desconto por item do tipo Educacao", 2.0);
-                        valorDesconto += 2.0;
+                        valorDesconto += 2.0 * item.getQuantidade();
                         break;
                     case "Lazer":
                         this.descontosPorItem.put("Desconto por item do tipo Lazer", 1.5);
-                        valorDesconto += 1.5;
+                        valorDesconto += 1.5 * item.getQuantidade();
                         break;
                     default:
                         break;
                 }
             }
 
-            nomeMetodoDesconto = "Desconto por Tipo de Item";
             if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
                 valorDesconto = 10.0 - pedido.getDescontoConcedido();
                 nomeMetodoDesconto = "Desconto parcial por Tipo de Item";
             }
 
+            if(valorDesconto > 0){
+                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto));
+            }
         }
-        return new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto);
     }
 
     @Override
@@ -56,8 +57,7 @@ public class FormaDescontoTipoItem implements IFormaDescontoTaxaEntrega {
         // esse metodo serve pra verificar se o item do pedido se enquadra nos descontos ou se ele ainda é elegivel por conta dos descontos já aplicados?
         validaPedido(pedido);
         boolean aplicavel = false;
-        double totalDescontos = 0;
-        if(pedido.getDescontoConcedido() < 10){
+        if(!pedido.getItens().isEmpty()){
             aplicavel = true;
         }
         return aplicavel;

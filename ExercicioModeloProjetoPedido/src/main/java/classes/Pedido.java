@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 public class Pedido {
-    private double taxaEntrega = 10;
+    private double taxaEntrega = 10; // passar para o construtor (poder ser variável)
     // no diagrama não existe explicitamente as variáveis abaixo. pq?
     private Cliente cliente;
     private LocalDate data;
     private List<Item> itens;
     private List<CupomDescontoEntrega> cuponsDesconto;
-//    private List<>
+    // tipos de relacionamentos no diagrama de classes
 
 
     public Pedido(LocalDate data, Cliente cliente) {
@@ -44,20 +44,23 @@ public class Pedido {
     }
 
     public double getTaxaEntrega(){
-        return this.taxaEntrega;
+
+        return this.taxaEntrega - this.getDescontoConcedido();
     }
 
     public void aplicarDesconto(CupomDescontoEntrega cupomDesconto){
-        if (cupomDesconto.getValorDesconto() > 0){
-            this.cuponsDesconto.add(cupomDesconto);
-            this.taxaEntrega -= cupomDesconto.getValorDesconto();
-        }
+        this.cuponsDesconto.add(cupomDesconto);
     }
 
     public double getDescontoConcedido(){
         double valorDesconto = 0;
         for (CupomDescontoEntrega cupom : cuponsDesconto){
             valorDesconto += cupom.getValorDesconto();
+        }
+
+        if(valorDesconto >= this.taxaEntrega)
+        {
+            valorDesconto = this.taxaEntrega;
         }
         return valorDesconto;
     }
