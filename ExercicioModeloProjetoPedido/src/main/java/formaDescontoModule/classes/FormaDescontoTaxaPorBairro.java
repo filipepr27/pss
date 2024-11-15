@@ -11,29 +11,24 @@ public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega {
     public void calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
         if(seAplica(pedido)){
-            double valorDesconto = 0;
+            double porcentagemDesconto = 0;
             String nomeMetodoDesconto = "Desconto por Bairro";
             switch (this.bairroCliente){
                 case "Centro":
-                    valorDesconto = 2.0;
+                    porcentagemDesconto = 0.20;
                     break;
                 case "Bela Vista":
-                    valorDesconto = 3.0;
+                    porcentagemDesconto = 0.30;
                     break;
                 case "Cidade Maravilhosa":
-                    valorDesconto = 1.5;
+                    porcentagemDesconto = 0.15;
                     break;
                 default:
                     break;
             }
 
-            if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
-                valorDesconto = 10.0 - pedido.getDescontoConcedido();
-                nomeMetodoDesconto = "Desconto parcial por Bairro";
-            }
-
-            if (valorDesconto > 0) {
-                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto + " " + this.bairroCliente, valorDesconto));
+            if (porcentagemDesconto > 0) {
+                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto + " " + this.bairroCliente, porcentagemDesconto * pedido.getTaxaEntrega()));
             }
         }
     }

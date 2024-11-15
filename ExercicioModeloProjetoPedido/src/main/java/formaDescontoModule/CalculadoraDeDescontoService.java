@@ -18,7 +18,7 @@ public class CalculadoraDeDescontoService {
         this.metodosDeDesconto.add(new FormaDescontoTaxaPorBairro());
         this.metodosDeDesconto.add(new FormaDescontoTipoItem());
         this.metodosDeDesconto.add(new FormaDescontoPorTipoCliente());
-        this.metodosDeDesconto.add(new FormaDescontoValorPedido(200.0));
+        this.metodosDeDesconto.add(new FormaDescontoValorPedido(2000.0, 0.15));
     }
 
     public void calcularDesconto(Pedido pedido){

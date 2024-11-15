@@ -21,9 +21,9 @@ public class Main {
         Item item4 = new Item("Garrafa Termica", 2, 60.00, "Lazer");
         Item item5 = new Item("Alcatra 1Kg", 1, 120.75, "Alimentacao");
 
-        Pedido pedido1 = new Pedido(LocalDate.now(), cliente1);
-        Pedido pedido2 = new Pedido(LocalDate.now(), cliente2);
-        Pedido pedido3 = new Pedido(LocalDate.now(), cliente3);
+        Pedido pedido1 = new Pedido(LocalDate.now(), cliente1, 10);
+        Pedido pedido2 = new Pedido(LocalDate.now(), cliente2, 20);
+        Pedido pedido3 = new Pedido(LocalDate.now(), cliente3, 20);
 
         pedido1.adicionar(item1);
         pedido1.adicionar(item3);

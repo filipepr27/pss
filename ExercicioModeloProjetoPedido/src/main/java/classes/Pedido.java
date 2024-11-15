@@ -16,9 +16,10 @@ public class Pedido {
     // tipos de relacionamentos no diagrama de classes
 
 
-    public Pedido(LocalDate data, Cliente cliente) {
+    public Pedido(LocalDate data, Cliente cliente, double taxaEntrega) {
         this.cliente = cliente;
         this.data = data;
+        this.taxaEntrega = taxaEntrega;
         this.itens = new ArrayList<>(); // tem diferença entre criar o array aqui e na declaração da variável
         this.cuponsDesconto = new ArrayList<>();
     }
@@ -44,8 +45,7 @@ public class Pedido {
     }
 
     public double getTaxaEntrega(){
-
-        return this.taxaEntrega - this.getDescontoConcedido();
+        return this.taxaEntrega;
     }
 
     public void aplicarDesconto(CupomDescontoEntrega cupomDesconto){
@@ -58,11 +58,7 @@ public class Pedido {
             valorDesconto += cupom.getValorDesconto();
         }
 
-        if(valorDesconto >= this.taxaEntrega)
-        {
-            valorDesconto = this.taxaEntrega;
-        }
-        return valorDesconto;
+        return Math.min(valorDesconto, this.taxaEntrega);
     }
 
     public List<CupomDescontoEntrega> getCuponsDesconto(){
@@ -72,13 +68,13 @@ public class Pedido {
     public String descreverCuponsUtilizados(){
         String descricaoCupons = "";
         for (CupomDescontoEntrega cupom : getCuponsDesconto()){
-            descricaoCupons += "- " + cupom.getNomeMetodo() + " RS" + cupom.getValorDesconto() + "\n";
+            descricaoCupons = descricaoCupons + ("- " + cupom.getNomeMetodo() + " RS" + cupom.getValorDesconto() + "\n");
         }
         return descricaoCupons;
     }
 
     @Override public String toString(){
-        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nValor do pedido: " + getValorPedido() + "\nValor desconto: " + getDescontoConcedido() + "\n";
+        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nValor do pedido: " + getValorPedido() + "\nValor entrega: " + getTaxaEntrega() + "\n" + "\nValor desconto: " + getDescontoConcedido() + "\n";
     }
 
 }

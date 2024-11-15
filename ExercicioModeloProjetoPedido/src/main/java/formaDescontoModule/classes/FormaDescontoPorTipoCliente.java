@@ -4,11 +4,11 @@ import classes.CupomDescontoEntrega;
 import classes.Pedido;
 import interfaces.IFormaDescontoTaxaEntrega;
 
-import java.util.Map;
+//import java.util.Map;
 
 public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
 
-    private Map<String, Double> descontosPorTipoCliente; // pq se um cliente só pertence a um tipo?
+//    private Map<String, Double> descontosPorTipoCliente; // pq se um cliente só pertence a um tipo?
     private String tipoCliente;
 
     public FormaDescontoPorTipoCliente(){
@@ -18,30 +18,25 @@ public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega {
     @Override
     public void calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
-        double valorDesconto = 0;
+        double porcentagemDesconto = 0;
         if (seAplica(pedido)){
         String nomeMetodoDesconto = "Desconto por Tipo de Cliente";
             switch (this.tipoCliente){
                 case "Ouro":
-                    valorDesconto = 3.0;
+                    porcentagemDesconto = 0.30;
                     break;
                 case "Prata":
-                    valorDesconto = 2.0;
+                    porcentagemDesconto = 0.20;
                     break;
                 case "Bronze":
-                    valorDesconto = 1.0;
+                    porcentagemDesconto = 0.10;
                     break;
                 default:
                     break;
             }
 
-            if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
-                valorDesconto = 10.0 - pedido.getDescontoConcedido();
-                nomeMetodoDesconto = "Desconto parcial por Tipo de Cliente";
-            }
-
-            if(valorDesconto > 0){
-                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto + " " + this.tipoCliente, valorDesconto));
+            if(porcentagemDesconto > 0){
+                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto + " " + this.tipoCliente, porcentagemDesconto * pedido.getTaxaEntrega()));
             }
         }
     }

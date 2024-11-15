@@ -7,31 +7,18 @@ import interfaces.IFormaDescontoTaxaEntrega;
 public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
 
     private double limiteValorPedido;
-    private static final double VALOR_DESCONTO = 5.0;
+    private final double PORCENTAGEM_DESCONTO;
 
-    public FormaDescontoValorPedido(double limiteValorPedido){
+    public FormaDescontoValorPedido(double limiteValorPedido, double porcentagemDesconto){
         this.limiteValorPedido = limiteValorPedido;
+        this.PORCENTAGEM_DESCONTO = porcentagemDesconto;
     }
 
     @Override
     public void calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
-        double valorDesconto = 0;
-        String nomeMetodoDesconto = "Desconto por Valor do Pedido";
-
-        if(seAplica(pedido)){
-            if(pedido.getValorPedido() > limiteValorPedido){
-                valorDesconto = VALOR_DESCONTO;
-            }
-
-            if(pedido.getDescontoConcedido() + valorDesconto > 10.0){
-                valorDesconto = 10.0 - pedido.getDescontoConcedido();
-                nomeMetodoDesconto = "Desconto parcial por Valor do Pedido";
-            }
-
-            if(valorDesconto > 0){
-                pedido.aplicarDesconto(new CupomDescontoEntrega(nomeMetodoDesconto, valorDesconto));
-            }
+        if(seAplica(pedido) && (pedido.getValorPedido() > limiteValorPedido)){
+            pedido.aplicarDesconto(new CupomDescontoEntrega("Desconto por Valor do Pedido", PORCENTAGEM_DESCONTO));
         }
     }
 
