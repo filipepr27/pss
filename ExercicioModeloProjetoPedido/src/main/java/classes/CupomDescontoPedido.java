@@ -1,24 +1,25 @@
 package classes;
 
-import interfaces.ICupomDescontoEntrega;
+import interfaces.ICupomDescontoPedido;
 
-public class CupomDescontoEntrega implements ICupomDescontoEntrega {
+public class CupomDescontoPedido implements ICupomDescontoPedido {
+
     private String nomeMetodo;
     private double valorDesconto;
 
-    public CupomDescontoEntrega(String nomeMetodo, double valorDesconto){
+    public CupomDescontoPedido(String nomeMetodo, double valorDesconto){
         this.nomeMetodo = nomeMetodo;
         this.valorDesconto = valorDesconto;
     }
 
     @Override
-    public double getValorDesconto(){
-        return this.valorDesconto;
+    public double getValorDesconto() {
+        return valorDesconto;
     }
 
     @Override
-    public String getNomeMetodo(){
-        return this.nomeMetodo;
+    public String getNomeMetodo() {
+        return nomeMetodo;
     }
 
     @Override public String toString(){

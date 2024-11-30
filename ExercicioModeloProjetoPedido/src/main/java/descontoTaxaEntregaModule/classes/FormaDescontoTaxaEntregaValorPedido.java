@@ -1,15 +1,15 @@
-package formaDescontoModule.classes;
+package descontoTaxaEntregaModule.classes;
 
 import classes.CupomDescontoEntrega;
 import classes.Pedido;
-import interfaces.IFormaDescontoTaxaEntrega;
+import descontoTaxaEntregaModule.interfaces.IFormaDescontoTaxaEntrega;
 
-public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
+public class FormaDescontoTaxaEntregaValorPedido implements IFormaDescontoTaxaEntrega {
 
     private double limiteValorPedido;
     private final double PORCENTAGEM_DESCONTO;
 
-    public FormaDescontoValorPedido(double limiteValorPedido, double porcentagemDesconto){
+    public FormaDescontoTaxaEntregaValorPedido(double limiteValorPedido, double porcentagemDesconto){
         this.limiteValorPedido = limiteValorPedido;
         this.PORCENTAGEM_DESCONTO = porcentagemDesconto;
     }
@@ -18,7 +18,7 @@ public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
     public void calcularDesconto(Pedido pedido) {
         validaPedido(pedido);
         if(seAplica(pedido) && (pedido.getValorPedido() > limiteValorPedido)){
-            pedido.aplicarDesconto(new CupomDescontoEntrega("Desconto por Valor do Pedido", PORCENTAGEM_DESCONTO));
+            pedido.aplicarDescontoEntrega(new CupomDescontoEntrega("Desconto por Valor do Pedido", PORCENTAGEM_DESCONTO));
         }
     }
 

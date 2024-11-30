@@ -1,27 +1,27 @@
 package classes;
 
+import interfaces.ICupomDescontoEntrega;
+import interfaces.ICupomDescontoPedido;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Pedido {
-    private double taxaEntrega = 10; // passar para o construtor (poder ser variável)
-    // no diagrama não existe explicitamente as variáveis abaixo. pq?
+    private double taxaEntrega = 10;
     private Cliente cliente;
     private LocalDate data;
+    private String codigoDeCupom;
     private List<Item> itens;
-    private List<CupomDescontoEntrega> cuponsDesconto;
-    // tipos de relacionamentos no diagrama de classes
-
+    private List<CupomDescontoEntrega> cuponsDescontoEntrega;
+    private List<CupomDescontoPedido> cuponsDescontoPedido;
 
     public Pedido(LocalDate data, Cliente cliente, double taxaEntrega) {
         this.cliente = cliente;
         this.data = data;
         this.taxaEntrega = taxaEntrega;
-        this.itens = new ArrayList<>(); // tem diferença entre criar o array aqui e na declaração da variável
-        this.cuponsDesconto = new ArrayList<>();
+        this.itens = new ArrayList<>();
+        this.cuponsDescontoEntrega = new ArrayList<>();
+        this.cuponsDescontoPedido = new ArrayList<>();
     }
 
     public void adicionar(Item item){
@@ -48,33 +48,74 @@ public class Pedido {
         return this.taxaEntrega;
     }
 
-    public void aplicarDesconto(CupomDescontoEntrega cupomDesconto){
-        this.cuponsDesconto.add(cupomDesconto);
+    public void aplicarDescontoEntrega(CupomDescontoEntrega cupomDescontoEntrega){
+        this.cuponsDescontoEntrega.add(cupomDescontoEntrega);
     }
 
-    public double getDescontoConcedido(){
+    public void aplicarDescontoValorPedido(CupomDescontoPedido cupomDescontoPedido){
+        this.cuponsDescontoPedido.add(cupomDescontoPedido);
+    }
+
+    public double getDescontoConcedidoEntrega(){
         double valorDesconto = 0;
-        for (CupomDescontoEntrega cupom : cuponsDesconto){
+        for (ICupomDescontoEntrega cupom : cuponsDescontoEntrega){
             valorDesconto += cupom.getValorDesconto();
         }
 
         return Math.min(valorDesconto, this.taxaEntrega);
     }
 
-    public List<CupomDescontoEntrega> getCuponsDesconto(){
-        return this.cuponsDesconto;
+    public double getDescontoConcedidoValorPedido(){
+        double valorDesconto = 0;
+        for (ICupomDescontoPedido cupom : cuponsDescontoPedido){
+            valorDesconto += cupom.getValorDesconto();
+        }
+
+        return valorDesconto;
     }
 
-    public String descreverCuponsUtilizados(){
+    public List<CupomDescontoEntrega> getCuponsDescontoEntrega(){ return this.cuponsDescontoEntrega; }
+
+    public List<CupomDescontoPedido> getCuponsDescontoPedido() { return this.cuponsDescontoPedido; }
+
+    public String descreverCuponsEntregaUtilizados(){
         String descricaoCupons = "";
-        for (CupomDescontoEntrega cupom : getCuponsDesconto()){
+        for (ICupomDescontoEntrega cupom : getCuponsDescontoEntrega()){
             descricaoCupons = descricaoCupons + ("- " + cupom.getNomeMetodo() + " RS" + cupom.getValorDesconto() + "\n");
         }
         return descricaoCupons;
     }
 
+    public String descreverCuponsValorPedidoUtilizados(){
+        String descricaoCupons = "";
+        for (ICupomDescontoPedido cupom : getCuponsDescontoPedido()){
+            descricaoCupons = descricaoCupons + ("- " + cupom.getNomeMetodo() + " RS" + cupom.getValorDesconto() + "\n");
+        }
+        return descricaoCupons;
+    }
+
+    public void setCodigoDeCupom(String codigoDeCupom){
+        this.codigoDeCupom = codigoDeCupom;
+    }
+
+    public String getCodigoDeCupom() {
+        return codigoDeCupom;
+    }
+
+    public List<String> getTipoItens() {
+        List<String> tipos = new ArrayList<>();
+        for (Item item : itens){
+            if (!tipos.contains(item.getTipo())){
+                tipos.add(item.getTipo());
+            }
+        }
+        return tipos;
+    }
+
     @Override public String toString(){
-        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nValor do pedido: " + getValorPedido() + "\nValor entrega: " + getTaxaEntrega() + "\n" + "\nValor desconto: " + getDescontoConcedido() + "\n";
+        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nTipo: " + this.cliente.getTipo() + "\nBairro: " + this.cliente.getBairro() +
+                "\nValor do pedido: " + getValorPedido() + "\nValor desconto pedido: " + getDescontoConcedidoValorPedido()  +
+                "\nValor entrega: " + getTaxaEntrega() + "\n" + "\nValor desconto entrega: " + getDescontoConcedidoEntrega()  + "\n";
     }
 
 }

@@ -3,7 +3,8 @@ package org.example;
 import classes.Cliente;
 import classes.Item;
 import classes.Pedido;
-import formaDescontoModule.CalculadoraDeDescontoService;
+import decontoValorPedidoModule.CalculadoraDeDescontoPedidoService;
+import descontoTaxaEntregaModule.CalculadoraDeDescontoEntregaService;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,7 @@ public class Main {
 
         Cliente cliente1 = new Cliente("Filipe", "Ouro", 10.0, "Rua A, Numero 19", "Centro", "Alegre");
         Cliente cliente2 = new Cliente("Joao", "Prata", 10.0, "Rua B, Numero 0", "Guararema", "Alegre");
-        Cliente cliente3 = new Cliente("Antonio", "Bronze", 10.0, "Rua C, Numero 99", "Cidade Maravilhosa", "Celina");
+        Cliente cliente3 = new Cliente("Antonio", "Platina", 10.0, "Rua C, Numero 99", "Cidade Maravilhosa", "Celina");
 
         Item item1 = new Item("Caderno", 3, 12.50, "Educacao");
         Item item2 = new Item("Caneta", 20, 1.50, "Educacao");
@@ -37,19 +38,34 @@ public class Main {
         pedido3.adicionar(item4);
         pedido3.adicionar(item5);
 
+        pedido1.setCodigoDeCupom("DESC10");
+        pedido2.setCodigoDeCupom("DESC20");
+        pedido3.setCodigoDeCupom("DESC70");
+
         System.out.println(pedido1.toString());
         System.out.println(pedido2.toString());
         System.out.println(pedido3.toString());
 
-        CalculadoraDeDescontoService sCalculadoraDesconto = new CalculadoraDeDescontoService();
+        CalculadoraDeDescontoEntregaService sCalculadoraDescontoEntrega = new CalculadoraDeDescontoEntregaService();
 
-        sCalculadoraDesconto.calcularDesconto(pedido1);
-        System.out.println("Pedido 1 com desconto aplicado:\n" + pedido1.toString() + pedido1.descreverCuponsUtilizados());
+        sCalculadoraDescontoEntrega.calcularDesconto(pedido1);
+        System.out.println("Pedido 1 com desconto de entrega aplicado:\n" + pedido1.toString() + pedido1.descreverCuponsEntregaUtilizados());
 
-        sCalculadoraDesconto.calcularDesconto(pedido2);
-        System.out.println("Pedido 2 com desconto aplicado:\n" + pedido2.toString() + pedido2.descreverCuponsUtilizados());
+        sCalculadoraDescontoEntrega.calcularDesconto(pedido2);
+        System.out.println("Pedido 2 com desconto de entrega aplicado:\n" + pedido2.toString() + pedido2.descreverCuponsEntregaUtilizados());
 
-        sCalculadoraDesconto.calcularDesconto(pedido3);
-        System.out.println("Pedido 3 com desconto aplicado:\n" + pedido3.toString() + pedido3.descreverCuponsUtilizados());
+        sCalculadoraDescontoEntrega.calcularDesconto(pedido3);
+        System.out.println("Pedido 3 com desconto de entrega aplicado:\n" + pedido3.toString() + pedido3.descreverCuponsEntregaUtilizados());
+
+        CalculadoraDeDescontoPedidoService sCalculadoraDescontoPedido = new CalculadoraDeDescontoPedidoService();
+
+        sCalculadoraDescontoPedido.calcularDesconto(pedido1);
+        System.out.println("Pedido 1 com desconto de valor pedido aplicado:\n" + pedido1.toString() + pedido1.descreverCuponsValorPedidoUtilizados());
+
+        sCalculadoraDescontoPedido.calcularDesconto(pedido2);
+        System.out.println("Pedido 2 com desconto de valor pedido aplicado:\n" + pedido2.toString() + pedido2.descreverCuponsValorPedidoUtilizados());
+
+        sCalculadoraDescontoPedido.calcularDesconto(pedido3);
+        System.out.println("Pedido 3 com desconto de valor pedido aplicado:\n" + pedido3.toString() + pedido3.descreverCuponsValorPedidoUtilizados());
     }
 }
