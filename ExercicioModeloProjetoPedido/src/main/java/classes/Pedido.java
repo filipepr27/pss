@@ -112,10 +112,4 @@ public class Pedido {
         return tipos;
     }
 
-    @Override public String toString(){
-        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nTipo: " + this.cliente.getTipo() + "\nBairro: " + this.cliente.getBairro() +
-                "\nValor do pedido: " + getValorPedido() + "\nValor desconto pedido: " + getDescontoConcedidoValorPedido()  +
-                "\nValor entrega: " + getTaxaEntrega() + "\n" + "\nValor desconto entrega: " + getDescontoConcedidoEntrega()  + "\n";
-    }
-
 }
