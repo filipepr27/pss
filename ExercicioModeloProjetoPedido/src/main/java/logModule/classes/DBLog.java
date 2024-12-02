@@ -8,7 +8,7 @@ import services.UsuarioLogadoService;
 
 public class DBLog implements ILog {
     @Override
-    public void escrever(String mensagem) {
+    public void escrever(String mensagem, Pedido pedido) {
         String nomeUsuario = UsuarioLogadoService.getNomeUsuario();
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
@@ -17,8 +17,8 @@ public class DBLog implements ILog {
         String nomeOperacao = "Calculo do valor total do pedido ( getDescontoConcedidoValorPedido )";
         String nomeCliente = pedido.getCliente().getNome();
         String log = String.format("NOME_USUARIO: %s; Data (DD/MM/YYYY): %s; Hora (HH:MM:SS): %s; " +
-                "codigo_pedido: %s; Nome de Operação: %s; Nome_Cliente: %s",
-                nomeUsuario, data, hora, codigoPedido, nomeOperacao, nomeCliente);
+                "codigo_pedido: %s; Nome de Operação: %s; Nome_Cliente: %s",nomeUsuario, data, hora, 
+                codigoPedido, nomeOperacao, nomeCliente);
         
         
         System.out.println(log);

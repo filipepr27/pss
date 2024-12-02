@@ -7,6 +7,7 @@ import decontoValorPedidoModule.CalculadoraDeDescontoPedidoService;
 import descontoTaxaEntregaModule.CalculadoraDeDescontoEntregaService;
 
 import java.time.LocalDate;
+import logModule.classes.DBLog;
 
 public class Main {
     public static void main(String[] args) {
@@ -67,5 +68,7 @@ public class Main {
 
         sCalculadoraDescontoPedido.calcularDesconto(pedido3);
         System.out.println("Pedido 3 com desconto de valor pedido aplicado:\n" + pedido3.toString() + pedido3.descreverCuponsValorPedidoUtilizados());
+        DBLog log = new DBLog();
+        log.escrever("",pedido1);
     }
 }
