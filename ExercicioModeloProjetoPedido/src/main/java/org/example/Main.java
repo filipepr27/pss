@@ -16,7 +16,7 @@ public class Main {
         System.out.println("****** Minha loja vitual ******\n\n");
 
         Cliente cliente1 = new Cliente("Filipe", "Ouro", 10.0, "Rua A, Numero 19", "Centro", "Alegre");
-        Cliente cliente2 = new Cliente("Joao", "Prata", 10.0, "Rua B, Numero 0", "Guararema", "Alegre");
+        Cliente cliente2 = new Cliente("Pedro Vitor", "Prata", 10.0, "Rua B, Numero 0", "Guararema", "Alegre");
         Cliente cliente3 = new Cliente("Antonio", "Platina", 10.0, "Rua C, Numero 99", "Cidade Maravilhosa", "Celina");
 
         Item item1 = new Item("Caderno", 3, 12.50, "Educacao");
@@ -25,9 +25,9 @@ public class Main {
         Item item4 = new Item("Garrafa Termica", 2, 60.00, "Lazer");
         Item item5 = new Item("Alcatra 1Kg", 1, 120.75, "Alimentacao");
 
-        Pedido pedido1 = new Pedido(LocalDate.now(), cliente1, 10);
-        Pedido pedido2 = new Pedido(LocalDate.now(), cliente2, 20);
-        Pedido pedido3 = new Pedido(LocalDate.now(), cliente3, 20);
+        Pedido pedido1 = new Pedido(1,LocalDate.now(), cliente1, 10);
+        Pedido pedido2 = new Pedido(2,LocalDate.now(), cliente2, 20);
+        Pedido pedido3 = new Pedido(3,LocalDate.now(), cliente3, 20);
 
         PedidoService pedidoService = new PedidoService(RegistradorDeLogService.definirTipoLog("DBLog"), UsuarioLogadoService.getNomeUsuario());
 
