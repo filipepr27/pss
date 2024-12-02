@@ -1,3 +1,5 @@
+package usuarioLogadoModule;
+
 import java.util.Random;
 
 public class UsuarioLogadoService {
