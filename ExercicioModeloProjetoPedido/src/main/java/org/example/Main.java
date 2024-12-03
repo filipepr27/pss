@@ -13,6 +13,10 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
+        System.out.println("Configurando sistema...\n\n");
+        RegistradorDeLogService.definirTipoLog("DBLog");
+        
         System.out.println("****** Minha loja vitual ******\n\n");
 
         Cliente cliente1 = new Cliente("Filipe", "Ouro", 10.0, "Rua A, Numero 19", "Centro", "Alegre");
@@ -29,7 +33,7 @@ public class Main {
         Pedido pedido2 = new Pedido(2,LocalDate.now(), cliente2, 20);
         Pedido pedido3 = new Pedido(3,LocalDate.now(), cliente3, 20);
 
-        PedidoService pedidoService = new PedidoService(RegistradorDeLogService.definirTipoLog("DBLog"), UsuarioLogadoService.getNomeUsuario());
+        PedidoService pedidoService = new PedidoService(RegistradorDeLogService.getTipoLogSelecionado(), UsuarioLogadoService.getNomeUsuario());
 
         pedidoService.adicionar(pedido1, item1);
         pedidoService.adicionar(pedido2, item2);

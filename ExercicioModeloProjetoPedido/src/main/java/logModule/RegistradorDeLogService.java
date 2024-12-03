@@ -11,8 +11,8 @@ import java.util.Map;
 public final class RegistradorDeLogService {
 
     private static Map<String, ILog> tiposLog = new HashMap<>();
+    private static ILog tipoLogSelecionado = null;
 
-    // Bloco de inicialização estático
     static {
         tiposLog.put("DBLog", new DBLog());
         tiposLog.put("JSONLog", new JSONLog());
@@ -24,10 +24,17 @@ public final class RegistradorDeLogService {
     }
 
     public static ILog definirTipoLog(String tipoLog){
-        if (tiposLog.containsKey(tipoLog)){
+        if (tiposLog.containsKey(tipoLog) && tipoLogSelecionado == null){
+            tipoLogSelecionado = tiposLog.get(tipoLog);
             return tiposLog.get(tipoLog);
         } else {
             throw new RuntimeException("Informe um tipo de log valido.");
         }
+    }
+
+    public static ILog getTipoLogSelecionado(){
+        if (tipoLogSelecionado == null)
+            throw new RuntimeException("Defina um tipo de log.");
+        return tipoLogSelecionado;
     }
 }
