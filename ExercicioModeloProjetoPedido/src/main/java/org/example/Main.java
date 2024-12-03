@@ -37,31 +37,19 @@ public class Main {
 
         pedidoService.adicionar(pedido1, item1);
         pedidoService.adicionar(pedido2, item2);
-//        pedido1.adicionar(item1);
-//        pedido1.adicionar(item3);
 
         pedidoService.adicionar(pedido2, item2);
         pedidoService.adicionar(pedido2, item5);
-//        pedido2.adicionar(item2);
-//        pedido2.adicionar(item5);
 
         pedidoService.adicionar(pedido3, item1);
         pedidoService.adicionar(pedido3, item2);
         pedidoService.adicionar(pedido3, item3);
         pedidoService.adicionar(pedido3, item4);
         pedidoService.adicionar(pedido3, item5);
-//        pedido3.adicionar(item1);
-//        pedido3.adicionar(item2);
-//        pedido3.adicionar(item3);
-//        pedido3.adicionar(item4);
-//        pedido3.adicionar(item5);
 
         pedidoService.setCodigoCupom(pedido1, "DESC10");
         pedidoService.setCodigoCupom(pedido2, "DESC20");
         pedidoService.setCodigoCupom(pedido3, "DESC70");
-//        pedido1.setCodigoDeCupom("DESC10");
-//        pedido2.setCodigoDeCupom("DESC20");
-//        pedido3.setCodigoDeCupom("DESC70");
 
         System.out.println(pedido1.toString());
         System.out.println(pedido2.toString());

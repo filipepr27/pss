@@ -1,0 +1,146 @@
+{"logs": [
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:18:25",
+        "Nome_Cliente": "Filipe",
+        "Codigo_Pedido": 1,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Gerente"
+    },
+    {
+        "Nome_Usuario": "Balcão PDV 1",
+        "Hora": "15:18:25",
+        "Nome_Cliente": "Pedro Vitor",
+        "Codigo_Pedido": 2,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Gerente"
+    },
+    {
+        "Nome_Usuario": "Balcão PDV 1",
+        "Hora": "15:18:25",
+        "Nome_Cliente": "Antonio",
+        "Codigo_Pedido": 3,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Gerente"
+    },
+    {
+        "Nome_Usuario": "Fulano de tal",
+        "Hora": "15:18:25",
+        "Nome_Cliente": "Filipe",
+        "Codigo_Pedido": 1,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Gerente"
+    },
+    {
+        "Nome_Usuario": "Balcão PDV 1",
+        "Hora": "15:18:25",
+        "Nome_Cliente": "Pedro Vitor",
+        "Codigo_Pedido": 2,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Gerente"
+    },
+    {
+        "Nome_Usuario": "Fulano de tal",
+        "Hora": "15:18:25",
+        "Nome_Cliente": "Antonio",
+        "Codigo_Pedido": 3,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Gerente"
+    },
+    {
+        "Nome_Usuario": "Fulano de tal",
+        "Hora": "15:18:50",
+        "Nome_Cliente": "Filipe",
+        "Codigo_Pedido": 1,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Balcão PDV 1"
+    },
+    {
+        "Nome_Usuario": "Balcão PDV 1",
+        "Hora": "15:18:50",
+        "Nome_Cliente": "Pedro Vitor",
+        "Codigo_Pedido": 2,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Balcão PDV 1"
+    },
+    {
+        "Nome_Usuario": "Fulano de tal",
+        "Hora": "15:18:50",
+        "Nome_Cliente": "Antonio",
+        "Codigo_Pedido": 3,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Balcão PDV 1"
+    },
+    {
+        "Nome_Usuario": "Balcão PDV 1",
+        "Hora": "15:18:50",
+        "Nome_Cliente": "Filipe",
+        "Codigo_Pedido": 1,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Balcão PDV 1"
+    },
+    {
+        "Nome_Usuario": "Balcão PDV 1",
+        "Hora": "15:18:50",
+        "Nome_Cliente": "Pedro Vitor",
+        "Codigo_Pedido": 2,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Balcão PDV 1"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:18:50",
+        "Nome_Cliente": "Antonio",
+        "Codigo_Pedido": 3,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "Balcão PDV 1"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:34:24",
+        "Nome_Cliente": "Filipe",
+        "Codigo_Pedido": 1,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "getValorPedido"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:34:24",
+        "Nome_Cliente": "Pedro Vitor",
+        "Codigo_Pedido": 2,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "getValorPedido"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:34:24",
+        "Nome_Cliente": "Antonio",
+        "Codigo_Pedido": 3,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "getValorPedido"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:34:24",
+        "Nome_Cliente": "Filipe",
+        "Codigo_Pedido": 1,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "getValorPedido"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:34:24",
+        "Nome_Cliente": "Pedro Vitor",
+        "Codigo_Pedido": 2,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "getValorPedido"
+    },
+    {
+        "Nome_Usuario": "Gerente",
+        "Hora": "15:34:24",
+        "Nome_Cliente": "Antonio",
+        "Codigo_Pedido": 3,
+        "Data": "03/12/2024",
+        "Nome_de_Operacao": "getValorPedido"
+    }
+]}

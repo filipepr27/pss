@@ -22,7 +22,7 @@ public class PedidoService {
     }
 
     public double getValorPedido(Pedido pedido){
-        log.escrever(usuarioLogado, pedido);
+        log.escrever(usuarioLogado, "getValorPedido", pedido);
         return pedido.getValorPedido();
     }
 
