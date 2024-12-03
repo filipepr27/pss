@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+        
         System.out.println("****** Minha loja vitual ******\n\n");
 
         Cliente cliente1 = new Cliente("Filipe", "Ouro", 10.0, "Rua A, Numero 19", "Centro", "Alegre");
