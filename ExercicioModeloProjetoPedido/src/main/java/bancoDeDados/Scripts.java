@@ -33,7 +33,7 @@ public class Scripts {
         }
         
        var sql = "CREATE TABLE IF NOT EXISTS Log ("
-                + "	idLog INTEGER PRIMARY KEY,"
+                + "	idLog INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "	log TEXT NOT NULL,"
                 + "	nomeUsuario TEXT NOT NULL"
                 + ");";
@@ -65,7 +65,7 @@ public class Scripts {
         var url = "jdbc:sqlite:exercicioModeloProjetoPedido.db";
 
         var sql = "CREATE TABLE IF NOT EXISTS Log ("
-                + "	idLog INTEGER PRIMARY KEY,"
+                + "	idLog INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "	data DATE NOT NULL,"
                 + "	log TEXT NOT NULL,"
                 + "	nomeUsuario TEXT NOT NULL,"
@@ -80,13 +80,12 @@ public class Scripts {
         }
     }  */
     public  void inserir(String log,String nomeUsuario){
-             String sql = "INSERT INTO Log(idLog,log,nomeUsuario) VALUES(?,?,?)";
+             String sql = "INSERT INTO Log(log,nomeUsuario) VALUES(?,?)";
              try (var conn = DriverManager.getConnection(url);
              var pstmt = conn.prepareStatement(sql)) {
-                 pstmt.setString(1,"Null");
-                 pstmt.setString(2,log);
-                 pstmt.setString(3,nomeUsuario);
-                 
+                 pstmt.setString(1,log);
+                 pstmt.setString(2,nomeUsuario);
+                 pstmt.executeUpdate();
              
              
              }catch (SQLException e) {
