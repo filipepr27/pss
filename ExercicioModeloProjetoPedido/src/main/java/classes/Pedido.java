@@ -14,8 +14,10 @@ public class Pedido {
     private List<Item> itens;
     private List<CupomDescontoEntrega> cuponsDescontoEntrega;
     private List<CupomDescontoPedido> cuponsDescontoPedido;
+    private int codigo;
 
-    public Pedido(LocalDate data, Cliente cliente, double taxaEntrega) {
+    public Pedido(int codigo, LocalDate data, Cliente cliente, double taxaEntrega) {
+        this.codigo = codigo;
         this.cliente = cliente;
         this.data = data;
         this.taxaEntrega = taxaEntrega;
@@ -111,11 +113,8 @@ public class Pedido {
         }
         return tipos;
     }
-
-    @Override public String toString(){
-        return "Informacoes do pedido\nCliente: " + this.cliente.getNome() + "\nTipo: " + this.cliente.getTipo() + "\nBairro: " + this.cliente.getBairro() +
-                "\nValor do pedido: " + getValorPedido() + "\nValor desconto pedido: " + getDescontoConcedidoValorPedido()  +
-                "\nValor entrega: " + getTaxaEntrega() + "\n" + "\nValor desconto entrega: " + getDescontoConcedidoEntrega()  + "\n";
+    public int getCodigo() {
+        return this.codigo;
     }
 
 }

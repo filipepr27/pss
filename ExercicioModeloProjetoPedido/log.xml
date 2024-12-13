@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Logs>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Log>
+                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <NomeUsuario>Gerente</NomeUsuario>
+                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Gerente; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:04:26; codigo_pedido: 1; Nome de Operação: Calculo do valor total do pedido ( getDescontoConcedidoValorPedido ); Nome_Cliente: Filipe</MensagemLog>
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </Log>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Log>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <NomeUsuario>Gerente</NomeUsuario>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Gerente; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:04:26; codigo_pedido: 2; Nome de Operação: Calculo do valor total do pedido ( getDescontoConcedidoValorPedido ); Nome_Cliente: Pedro Vitor</MensagemLog>
+                                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </Log>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Log>
+                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        <NomeUsuario>Gerente</NomeUsuario>
+                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Gerente; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:04:26; codigo_pedido: 3; Nome de Operação: Calculo do valor total do pedido ( getDescontoConcedidoValorPedido ); Nome_Cliente: Antonio</MensagemLog>
+                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    </Log>
+                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    <Log>
+                                                                        
+        
+        
+        
+        
+        
+        
+        
+        <NomeUsuario>Gerente</NomeUsuario>
+                                                                        
+        
+        
+        
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Gerente; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:04:26; codigo_pedido: 1; Nome de Operação: Calculo do valor total do pedido ( getDescontoConcedidoValorPedido ); Nome_Cliente: Filipe</MensagemLog>
+                                                                    
+    
+    
+    
+    
+    
+    
+    
+    </Log>
+                                
+    
+    
+    
+    
+    
+    
+    
+    <Log>
+                                                                
+        
+        
+        
+        
+        
+        
+        <NomeUsuario>Gerente</NomeUsuario>
+                                                                
+        
+        
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Gerente; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:04:26; codigo_pedido: 2; Nome de Operação: Calculo do valor total do pedido ( getDescontoConcedidoValorPedido ); Nome_Cliente: Pedro Vitor</MensagemLog>
+                                                            
+    
+    
+    
+    
+    
+    
+    </Log>
+                            
+    
+    
+    
+    
+    
+    
+    <Log>
+                                                        
+        
+        
+        
+        
+        
+        <NomeUsuario>Gerente</NomeUsuario>
+                                                        
+        
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Gerente; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:04:26; codigo_pedido: 3; Nome de Operação: Calculo do valor total do pedido ( getDescontoConcedidoValorPedido ); Nome_Cliente: Antonio</MensagemLog>
+                                                    
+    
+    
+    
+    
+    
+    </Log>
+                        
+    
+    
+    
+    
+    
+    <Log>
+                                                
+        
+        
+        
+        
+        <NomeUsuario>Balcão PDV 1</NomeUsuario>
+                                                
+        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Balcão PDV 1; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:35:11; codigo_pedido: 1; Nome de Operação: getValorPedido; Nome_Cliente: Filipe</MensagemLog>
+                                            
+    
+    
+    
+    
+    </Log>
+                    
+    
+    
+    
+    
+    <Log>
+                                        
+        
+        
+        
+        <NomeUsuario>Balcão PDV 1</NomeUsuario>
+                                        
+        
+        
+        
+        <MensagemLog>NOME_USUARIO: Balcão PDV 1; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:35:11; codigo_pedido: 2; Nome de Operação: getValorPedido; Nome_Cliente: Pedro Vitor</MensagemLog>
+                                    
+    
+    
+    
+    </Log>
+                
+    
+    
+    
+    <Log>
+                                
+        
+        
+        <NomeUsuario>Balcão PDV 1</NomeUsuario>
+                                
+        
+        
+        <MensagemLog>NOME_USUARIO: Balcão PDV 1; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:35:11; codigo_pedido: 3; Nome de Operação: getValorPedido; Nome_Cliente: Antonio</MensagemLog>
+                            
+    
+    
+    </Log>
+            
+    
+    
+    <Log>
+                        
+        
+        <NomeUsuario>Balcão PDV 1</NomeUsuario>
+                        
+        
+        <MensagemLog>NOME_USUARIO: Balcão PDV 1; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:35:11; codigo_pedido: 1; Nome de Operação: getValorPedido; Nome_Cliente: Filipe</MensagemLog>
+                    
+    
+    </Log>
+        
+    
+    <Log>
+                
+        <NomeUsuario>Balcão PDV 1</NomeUsuario>
+                
+        <MensagemLog>NOME_USUARIO: Balcão PDV 1; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:35:11; codigo_pedido: 2; Nome de Operação: getValorPedido; Nome_Cliente: Pedro Vitor</MensagemLog>
+            
+    </Log>
+    
+    <Log>
+        <NomeUsuario>Balcão PDV 1</NomeUsuario>
+        <MensagemLog>NOME_USUARIO: Balcão PDV 1; Data (DD/MM/YYYY): 03/12/2024; Hora (HH:MM:SS): 15:35:12; codigo_pedido: 3; Nome de Operação: getValorPedido; Nome_Cliente: Antonio</MensagemLog>
+    </Log>
+</Logs>
